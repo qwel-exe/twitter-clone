@@ -29,3 +29,42 @@
   font-size: 20px;
   font-weight: 800;
 }
+.show {display:block;}
+
+.drop-box{
+ 
+  color: #0e3d42b9;
+  margin: .12rem;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 8px;
+  background-color: #f1f1f1;
+  
+
+}
+.udrop{
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 5;
+  max-height: 50vh;
+  overflow-y: scroll;
+   top: 70px;
+   margin: -10px;
+   
+
+}
+.show2 {display:block;}
+.udrop::-webkit-scrollbar{
+  display: none;
+}
+.logout{
+  height: 40px;
+  padding: 5px;
+   color: "blue";
+}
+.loginPage{
+  margin-left: 350px;
+}

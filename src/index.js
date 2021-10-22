@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import Context, {FireBaseContext} from './FireBaseContext';
+import Conetxt from './FireBaseContext';
+import firebase from 'firebase';
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <FireBaseContext.Provider value={{firebase}}>
+ <Context>
+  <App /></Context>
+  </FireBaseContext.Provider>
+  ,document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
