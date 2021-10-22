@@ -10,7 +10,7 @@ function TweetBox() {
   const sendTweet = (e) => {
     e.preventDefault();
     
-    if (tweetMessage && tweetMessage.length > 0 || tweetImage && tweetImage.length > 0) {
+    if ((tweetMessage && tweetMessage.length > 0) || (tweetImage && tweetImage.length > 0)) {
       db.collection("posts").add({
         displayName: "Anirudh",
         username: "Anirudh",
