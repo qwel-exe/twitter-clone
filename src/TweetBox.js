@@ -9,19 +9,22 @@ function TweetBox() {
 
   const sendTweet = (e) => {
     e.preventDefault();
+    
+    if (tweetMessage && tweetMessage.length > 0 || tweetImage && tweetImage.length > 0) {
+      db.collection("posts").add({
+        displayName: "Anirudh",
+        username: "Anirudh",
+        verified: true,
+        text: tweetMessage,
+        image: tweetImage,
+        avatar:
+          "https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png",
+      });
+  
+      setTweetMessage("");
+      setTweetImage("");
+    }
 
-    db.collection("posts").add({
-      displayName: "Anirudh",
-      username: "Anirudh",
-      verified: true,
-      text: tweetMessage,
-      image: tweetImage,
-      avatar:
-        "https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png",
-    });
-
-    setTweetMessage("");
-    setTweetImage("");
   };
 
   return (
