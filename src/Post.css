@@ -20,6 +20,12 @@
   margin-top: 20px;
 }
 
+.post__likeCount {
+  position: absolute;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
 .post__headerDescription {
   margin-bottom: 10px;
   font-size: 15px;
