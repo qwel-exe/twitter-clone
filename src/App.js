@@ -28,8 +28,8 @@ const {firebase} = useContext(FireBaseContext)
         {user? <Redirect to='/' path="/twitter"></Redirect>:<Redirect to='/signup' path="/twitter"></Redirect>}
      
         <Route path="/login"><Login></Login></Route>
-        <Route path="/explore" exact component={explore}/> <Sidebar/>
-        </Router> 
+        <Route path="/explore" component={explore}/>
+        </Router> </div>
   );
 }
 
