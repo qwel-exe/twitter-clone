@@ -6,6 +6,8 @@ import { useContext, useEffect } from 'react';
 import { AuthContext, FireBaseContext } from './FireBaseContext';
 import HomeScreen from "./HomeScreen";
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import explore from "./Explore tab/Explore"
+
 
 function App() {
  
@@ -26,9 +28,8 @@ const {firebase} = useContext(FireBaseContext)
         {user? <Redirect to='/' path="/twitter"></Redirect>:<Redirect to='/signup' path="/twitter"></Redirect>}
      
         <Route path="/login"><Login></Login></Route>
-      
+        <Route path="/explore" exact component={explore}/> <Sidebar/>
         </Router> 
-    </div>
   );
 }
 
