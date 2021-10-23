@@ -7,7 +7,8 @@ import FlipMove from "react-flip-move";
 import { useContext} from 'react';
 import { AuthContext , FireBaseContext} from './FireBaseContext';
 import { useHistory } from 'react-router';
-import Arrow from './Arrow'
+import Arrow from './Arrow';
+
 function Feed() {
   const [posts, setPosts] = useState([]);
   const {firebase} = useContext(FireBaseContext);
