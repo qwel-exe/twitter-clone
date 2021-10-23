@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Context, {FireBaseContext} from './FireBaseContext';
-import Conetxt from './FireBaseContext';
 import firebase from 'firebase';
 ReactDOM.render(
   <FireBaseContext.Provider value={{firebase}}>

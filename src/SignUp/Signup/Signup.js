@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useContext } from 'react';
-// import Logo from '../../olx-logo.png';
 import './Signup.css';
 import { FireBaseContext } from '../../FireBaseContext';
 import { useHistory } from 'react-router';
@@ -84,7 +83,7 @@ export default function Signup() {
           <br />
           <button>Signup</button>
         </form>
-        <a onClick={()=>history.push("/login")}>Login</a>
+        <a href=" #" onClick={()=>history.push("/login")} >Login</a>
       </div>
     </div>
   );

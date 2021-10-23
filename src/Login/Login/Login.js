@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState , useContext} from 'react';
 import { FireBaseContext } from '../../FireBaseContext';
-// import Logo from '../../olx-logo.png';
 import './Login.css';
 import { useHistory } from 'react-router';
 function Login() {
@@ -50,7 +49,7 @@ function Login() {
           <br />
           <button>Login</button>
         </form>
-        <a onClick={()=>{history.push("/signup")}}>Signup</a>
+        <a onClick={()=>{history.push("/signup")}} href=" #">Signup</a>
       </div>
     </div>
   );

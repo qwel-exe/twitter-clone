@@ -1,13 +1,11 @@
 import React from "react";
-import Sidebar from "./Sidebar";
-import Feed from "./Feed";
 import "./App.css";
 import Signup from './SignUp/Signup';
 import Login from "./Login/Login/Login";
 import { useContext, useEffect } from 'react';
 import { AuthContext, FireBaseContext } from './FireBaseContext';
 import HomeScreen from "./HomeScreen";
-import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 function App() {
  
