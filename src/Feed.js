@@ -4,10 +4,15 @@ import Post from "./Post";
 import "./Feed.css";
 import db from "./firebase";
 import FlipMove from "react-flip-move";
-
+import { useContext} from 'react';
+import { AuthContext , FireBaseContext} from './FireBaseContext';
+import { useHistory } from 'react-router';
+import Arrow from './Arrow'
 function Feed() {
   const [posts, setPosts] = useState([]);
-
+  const {firebase} = useContext(FireBaseContext);
+  const history = useHistory();
+  const {user} = useContext(AuthContext);
   useEffect(() => {
     db.collection("posts").onSnapshot((snapshot) =>
       setPosts(snapshot.docs.map((doc) => doc.data()))
@@ -17,7 +22,29 @@ function Feed() {
   return (
     <div className="feed">
       <div className="feed__header">
-        <h2>Home</h2>
+        <span><h2>Home</h2> 
+      <div className="loginPage">
+          <span>{user? user.displayName:<span onClick={()=>history.push("/login")}>Login
+          </span> }<hr />
+          <span  onClick={()=>{
+            document.getElementById("udrop").classList.toggle("show2");
+            console.log(`clicked`)
+          }}><Arrow></Arrow> </span>
+          <div id="udrop" className= "udrop">
+          <ul>
+          {user && <div className="logout" onClick={()=>{
+          firebase.auth().signOut().then(() => {
+            history.push("/login")
+          }).catch((error) => {
+            console.log(`Error Occured. Could'nt SignOut`)
+          });
+        }}><li>Logout</li><hr></hr></div>}
+        </ul>
+          </div></span>
+        
+          
+         
+        </div> </span>
       </div>
 
       <TweetBox />

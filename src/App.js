@@ -1,20 +1,35 @@
 import React from "react";
-import Sidebar from "./Sidebar";
-import Feed from "./Feed";
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
+import Signup from './SignUp/Signup';
+import Login from "./Login/Login/Login";
+import { useContext, useEffect } from 'react';
+import { AuthContext, FireBaseContext } from './FireBaseContext';
+import HomeScreen from "./HomeScreen";
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import explore from "./Explore tab/Explore"
 
+
 function App() {
+ 
+  const {user, setUser} = useContext(AuthContext)
+const {firebase} = useContext(FireBaseContext)
+ useEffect(() => {
+  firebase.auth().onAuthStateChanged((user)=>{
+    setUser(user)
+  })}
+)
   return (
-    // BEM
-    <div className="app">     
-      <BrowserRouter>
-        <Sidebar/>
-        <Route path="/" exact component={Feed}/>
-        <Route path="/explore" exact component={explore}/>
-      </BrowserRouter>  
-    </div>
+    <div className="app">
+      <Router>
+
+      <Route  path="/signup"><Signup></Signup></Route>
+   
+        <Route exact path="/"> <HomeScreen/></Route>
+        {user? <Redirect to='/' path="/twitter"></Redirect>:<Redirect to='/signup' path="/twitter"></Redirect>}
+     
+        <Route path="/login"><Login></Login></Route>
+        <Route path="/explore" exact component={explore}/> <Sidebar/>
+        </Router> 
   );
 }
 
