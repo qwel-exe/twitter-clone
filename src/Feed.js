@@ -15,8 +15,15 @@ function Feed() {
   const history = useHistory();
   const {user} = useContext(AuthContext);
   useEffect(() => {
-    db.collection("posts").onSnapshot((snapshot) =>
-      setPosts(snapshot.docs.map((doc) => doc.data()))
+    db.collection("posts").onSnapshot((snapshot) => 
+      setPosts(snapshot.docs.map((doc) => {
+        const data = doc.data()
+
+        return {
+          ...data,
+          id: doc.id,
+        }
+      }))
     );
   }, []);
 
@@ -53,7 +60,8 @@ function Feed() {
       <FlipMove>
         {posts.map((post) => (
           <Post
-            key={post.text}
+            key={post.id}
+            id={post.id}
             displayName={post.displayName}
             username={post.username}
             verified={post.verified}
