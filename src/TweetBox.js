@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import "./TweetBox.css";
 import { Avatar, Button } from "@material-ui/core";
-import db from "./firebase";
+import { createRecord } from "./firebase";
 
 function TweetBox() {
   const [tweetMessage, setTweetMessage] = useState("");
   const [tweetImage, setTweetImage] = useState("");
 
-  const sendTweet = (e) => {
+  const sendTweet = async (e) => {
     e.preventDefault();
-    
-    if ((tweetMessage && tweetMessage.length > 0) || (tweetImage && tweetImage.length > 0)) {
-      db.collection("posts").add({
+
+    if (
+      (tweetMessage && tweetMessage.length > 0) ||
+      (tweetImage && tweetImage.length > 0)
+    ) {
+      await createRecord("posts", {
         displayName: "Anirudh",
         username: "Anirudh",
         verified: true,
@@ -20,11 +23,10 @@ function TweetBox() {
         avatar:
           "https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png",
       });
-  
+
       setTweetMessage("");
       setTweetImage("");
     }
-
   };
 
   return (

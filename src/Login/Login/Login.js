@@ -3,18 +3,19 @@ import { useState , useContext} from 'react';
 import { FireBaseContext } from '../../FireBaseContext';
 import './Login.css';
 import { useHistory } from 'react-router';
+
 function Login() {
   const [userName, setuserName] = useState("");
   const [passWord, setpassWord] = useState("");
-  const {firebase} = useContext(FireBaseContext);
+  // const {firebase} = useContext(FireBaseContext);
   const history = useHistory();
   const handleSubmit= (e)=>{
     e.preventDefault();
-    firebase.auth().signInWithEmailAndPassword(userName, passWord).then(()=>{
-      history.push("/")
-    }).catch((err)=>{
-      alert(err.message)
-    })
+    // firebase.auth().signInWithEmailAndPassword(userName, passWord).then(()=>{
+    //   history.push("/")
+    // }).catch((err)=>{
+    //   alert(err.message)
+    // })
     
     }
   return (
