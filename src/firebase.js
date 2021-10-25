@@ -137,3 +137,8 @@ export const useStorage = (path) => {
 
   return { progress, url, error, uploadFile };
 };
+
+export const deleteDoc = async (path) => {
+  await firebase.firestore().doc(`${path}`).delete();
+  return true;
+};

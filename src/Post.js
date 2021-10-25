@@ -6,52 +6,45 @@ import {
   Repeat as RepeatIcon,
   ChatBubbleOutline as ChatBubbleOutlineIcon,
   VerifiedUser as VerifiedUserIcon,
-  Publish as PublishIcon
+  Publish as PublishIcon,
 } from "@material-ui/icons";
 import "./Post.css";
-import { AuthContext } from './FireBaseContext'
-import db from "./firebase";
+import { AuthContext } from "./FireBaseContext";
+import { useCollection, createRecord, createDoc, deleteDoc } from "./firebase";
 
 const Post = forwardRef(
   ({ id, displayName, username, verified, text, image, avatar }, ref) => {
-    const [isLike, setIsLike] = useState(false)
-    const [likeCount, setLikeCount] = useState(0)
-    const { user } = useContext(AuthContext)
-    const postLikesCollection = db.collection('post_likes')
-
-    const handleClickLike = (e) => {
+    const [isLike, setIsLike] = useState(false);
+    const [likeCount, setLikeCount] = useState(0);
+    const { user } = useContext(AuthContext);
+    const { data: postLikes } = useCollection("post_likes");
+    const handleClickLike = async (e) => {
       const dataObj = {
         post_id: id,
         email: user.email,
-        created_at: new Date()
-      }
+      };
+      setIsLike(true);
+      await createRecord("post_likes", dataObj);
+    };
 
-      setIsLike(true)
-      
-      postLikesCollection.add(dataObj) 
-    }
-
-    const handleClickUnlike = (e) => {
-      setIsLike(false)
-
-      postLikesCollection
-        .where('post_id', '==', id)
-        .where('email', '==', user.email)
-        .get()
-        .then((docs) => docs.forEach((doc) => doc.ref.delete()))
-    }
+    const handleClickUnlike = async (e) => {
+      setIsLike(false);
+      let like = postLikes.filter(
+        (postLike) => postLike.post_id === id && user.email == postLike.email
+      );
+      await deleteDoc(`post_likes/${like[0].id}`);
+    };
 
     useEffect(() => {
-      postLikesCollection
-        .where('post_id', '==', id)
-        .onSnapshot((snapshot) => {
-          const data = snapshot.docs.map((doc) => doc.data())
-          const isUserLiked = data.some((row) => row.post_id === id && row.email === user.email)
-
-          setIsLike(isUserLiked)
-          setLikeCount(data.length)
-        })
-    })
+      if (postLikes) {
+        let likes = postLikes.filter((post) => post.post_id == id);
+        const isUserLiked = likes.filter(
+          (like) => like.email == user.email
+        ).length;
+        setIsLike(isUserLiked ? true : false);
+        setLikeCount(likes.length);
+      }
+    });
 
     return (
       <div className="post" ref={ref}>
@@ -79,9 +72,17 @@ const Post = forwardRef(
             <RepeatIcon fontSize="small" />
             <div>
               {isLike ? (
-                <FavoriteIcon onClick={handleClickUnlike} fontSize="small" style={{ cursor: 'pointer', color: 'red' }} />
+                <FavoriteIcon
+                  onClick={handleClickUnlike}
+                  fontSize="small"
+                  style={{ cursor: "pointer", color: "red" }}
+                />
               ) : (
-                <FavoriteBorderIcon onClick={handleClickLike} fontSize="small" style={{ cursor: 'pointer' }} />
+                <FavoriteBorderIcon
+                  onClick={handleClickLike}
+                  fontSize="small"
+                  style={{ cursor: "pointer" }}
+                />
               )}
               <small className="post__likeCount">{likeCount}</small>
             </div>

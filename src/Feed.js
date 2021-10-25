@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import TweetBox from "./TweetBox";
 import Post from "./Post";
 import "./Feed.css";
-// import db from "./firebase";
 import FlipMove from "react-flip-move";
 import { useContext } from "react";
 import { AuthContext, FireBaseContext } from "./FireBaseContext";
@@ -78,6 +77,7 @@ function Feed() {
               text={post.text}
               avatar={post.avatar}
               image={post.image}
+              id={post.id}
             />
           ))}
       </FlipMove>
