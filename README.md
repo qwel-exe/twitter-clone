@@ -32,10 +32,11 @@ The source code of this project is written in **`JS`**. So, you would require th
 [![chrome](https://img.shields.io/badge/Open-project-lightgrey.svg?logo=google-chrome&style=popout&logoColor=red)](#)
 
 Open the project and run command
+`npm i`
 `npm start`
 
 
-## Tu run unit test
+## To run unit test
 npm test
 
 ## Need help?
