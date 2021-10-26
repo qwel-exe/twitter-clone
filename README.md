@@ -25,7 +25,7 @@ In React
 
 [![GitHub top language](https://img.shields.io/github/languages/top/qwe123coder/twitter-clone?logo=html&style=social)](https://github.com/qwe123coder/)
 
-The source code of this project is written in **`TS`**. So, you would require the NodeJS.
+The source code of this project is written in **`JS`**. So, you would require the NodeJS.
 
 ## Instructions
 
@@ -42,7 +42,7 @@ npm test
 
 
 
-Invite me to connect on [LinkedIn](#).
+
 
 [![Medium](https://img.shields.io/badge/Medium-follow-black.svg?logo=medium&logoColor=white)](#)
 
